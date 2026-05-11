@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #ffffff;
+  --surface: #f6f8fb;
+  --surface-2: #eef2f7;
+  --text: #0a0e1a;
+  --text-muted: #5a6478;
+  --text-faint: #8b95a8;
+  --hairline: #e5eaf2;
+  --blue-deep: #1e3a8a;
+  --blue: #2563eb;
+  --blue-bright: #3b82f6;
+  --blue-tint: #dbeafe;
+  --green: #059669;
+  --gold: #c9a24a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Manrope, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--text);
+  text-rendering: geometricPrecision;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: var(--blue-tint);
+  color: var(--blue-deep);
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: 0;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-deep;
+  }
+}
+
+@layer components {
+  .container-grid {
+    @apply mx-auto w-full max-w-[1280px] px-5 md:px-8 xl:px-10;
+  }
+
+  .section-space {
+    @apply py-16 md:py-24;
+  }
+
+  .prose-block {
+    @apply rounded-xl border border-hairline bg-white p-6 md:p-8;
+  }
+
+  .prose-block h2 {
+    @apply text-2xl font-bold text-text;
+  }
+
+  .prose-block p {
+    @apply mt-4 text-base leading-8 text-text-muted;
+  }
+
+  .filter-label,
+  .form-label {
+    @apply grid gap-2 text-sm font-semibold text-text;
+  }
+
+  .filter-select,
+  .form-input {
+    @apply w-full rounded-lg border border-hairline bg-white px-3 py-3 text-sm font-medium text-text shadow-sm transition placeholder:text-text-faint focus:border-blue-deep focus:outline-none focus:ring-2 focus:ring-blue-tint;
+  }
+}

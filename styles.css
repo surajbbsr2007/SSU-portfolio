@@ -1,0 +1,133 @@
+:root {
+  color-scheme: dark;
+  --background: #050505;
+  --foreground: #f8f4ed;
+  --muted: #b6b0a7;
+  --accent: #2fd2c4;
+  --accent-strong: #ffb545;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.motion-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #050505 0%, #11100e 54%, #050505 100%);
+}
+
+.motion-stage {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+  place-items: end start;
+  padding: clamp(1.25rem, 3vw, 3.5rem);
+}
+
+.motion-video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  object-fit: cover;
+}
+
+.motion-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / 0.78), rgb(0 0 0 / 0.28) 48%, rgb(0 0 0 / 0.1)),
+    linear-gradient(0deg, rgb(0 0 0 / 0.7), transparent 58%);
+}
+
+.motion-copy {
+  width: min(38rem, 100%);
+  padding-bottom: clamp(1rem, 7vh, 5rem);
+}
+
+.motion-kicker {
+  margin: 0 0 0.85rem;
+  color: var(--accent);
+  font-size: clamp(0.76rem, 1.6vw, 0.86rem);
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.motion-copy h1 {
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(3rem, 9vw, 7.6rem);
+  line-height: 0.89;
+  letter-spacing: 0;
+}
+
+.motion-copy p:last-child {
+  max-width: 34rem;
+  margin: 1.25rem 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.22rem);
+  line-height: 1.55;
+}
+
+.motion-copy::before {
+  display: block;
+  width: 4.5rem;
+  height: 0.28rem;
+  margin-bottom: 1.35rem;
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+  content: "";
+}
+
+@media (max-width: 740px) {
+  .motion-stage {
+    min-height: 92vh;
+    padding: 1.1rem;
+    place-items: end start;
+  }
+
+  .motion-video {
+    object-position: center;
+  }
+
+  .motion-overlay {
+    background:
+      linear-gradient(0deg, rgb(0 0 0 / 0.82), rgb(0 0 0 / 0.24) 62%, rgb(0 0 0 / 0.32)),
+      linear-gradient(90deg, rgb(0 0 0 / 0.42), transparent);
+  }
+
+  .motion-copy h1 {
+    max-width: 9ch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-video {
+    display: none;
+  }
+
+  .motion-stage {
+    background:
+      linear-gradient(90deg, rgb(0 0 0 / 0.76), rgb(0 0 0 / 0.28)),
+      url("assets/motion-poster.jpg") center / cover;
+  }
+}
