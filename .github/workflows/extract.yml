@@ -1,0 +1,33 @@
+name: Extract portfolio zip
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Extract zip and commit
+        shell: bash
+        run: |
+          set -e
+          if [[ ! -f "sharanika-portfolio-updated-clean.zip" ]]; then
+            echo "Zip file not found; nothing to do."
+            exit 0
+          fi
+          mkdir -p extracted
+          unzip -q sharanika-portfolio-updated-clean.zip -d extracted
+          shopt -s dotglob
+          cp -a extracted/. .
+          shopt -u dotglob
+          rm -rf extracted
+          git rm -f sharanika-portfolio-updated-clean.zip || true
+          git add .
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git commit -m "Upload extracted portfolio files"
+          git push
